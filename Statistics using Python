@@ -1,0 +1,296 @@
+﻿## Statistics: The Field of Data Analysis
+
+- Statistics is a field of study that analyzes data to gain insights and make informed decisions.
+
+### Types of Statistics
+
+1. Descriptive Statistics:
+   - Descriptive statistics involves collecting and describing data.
+   - It provides a summary of the data's main characteristics, such as measures of central tendency and measures of spread.
+
+2. Inferential Statistics:
+   - Inferential statistics uses sample data to make inferences or draw conclusions about a population.
+
+### Types of Data
+
+- Data can be classified into two main types:
+
+1. Numeric Data:
+   - Numeric data consists of numbers and can be further categorized into:
+     - Interval Data: Numeric data without a natural zero point (e.g., temperature measured in Celsius).
+     - Ratio Data: Numeric data with a natural zero point (e.g., height, weight).
+
+2. Categorical Data:
+   - Categorical data represents characteristics or qualities and can be further categorized into:
+     - Nominal Data: Categorical data with no inherent order or ranking (e.g., colors, categories).
+     - Ordinal Data: Categorical data with a specific order or ranking (e.g., survey responses with options like "strongly agree," "agree," "disagree," "strongly disagree").
+
+### Measures of Center
+
+- Measures of center describe the central tendency or average of a dataset.
+- Important measures of center include:
+   - Mean: Calculated using `np.mean()`.
+   - Median: Calculated using `np.median()`.
+   - Mode: Calculated using `np.mode()`.
+
+- The choice of measure depends on the data's distribution.
+- The mean is suitable for symmetric data, while the median is preferred for skewed data (where the graph is bent towards one side).
+
+### Measures of Spread
+
+- Measures of spread quantify the variability or spread of the values in a dataset.
+
+1. Variance:
+   - Variance is calculated as the sum of the squared differences between each individual value and the mean, divided by the sample size.
+
+2. Standard Deviation:
+   - Standard deviation is the square root of the variance.
+
+3. Outliers:
+   - Outliers are data points that deviate significantly from the rest of the dataset.
+   - Outliers can be identified using quantiles or percentiles.
+
+4. Interquartile Range (IQR):
+   - The IQR is another measure of spread and is calculated as the difference between the 75th and 25th percentiles.
+
+- Quantiles: Percentiles
+   - Quantiles, also known as percentiles, are useful for understanding the distribution of the data.
+   - The following quantiles are commonly used:
+     - Median: The 50th percentile, calculated as `np.quantile(df, 0.5)`.
+     - Quartiles: The 25th, 50th, and 75th percentiles, calculated as `np.quantile(df, [0, 0.25, 0.5, 0.75, 1])`. Quartiles are often used for boxplots.
+     - Custom Quantiles: You can also calculate quantiles at specific percentiles using `np.quantile(df, np.linspace(start, end, size))`.
+
+- The IQR can be computed using `np.quantile(df, 0.75) - np.quantile(df, 0.25)` or `scipy.stats.iqr(df)`.
+
+- Outliers can be identified if the data falls below `np.quantile(df, 0.25) - 1.5 * IQR` or above `np.quantile(df, 0.75) + 1.5 * IQR`.
+
+﻿## Chance: The Probability of Occurrence
+
+- Chance refers to the probability of an event occurring.
+
+### Random Sampling
+
+- To select an item randomly from a dataframe, the `sample` method can be used.
+- To reproduce the exact same random values, you can assign a seed number using `np.random.seed()` before sampling.
+
+### Types of Sampling
+
+1. Sampling with Replacement:
+   - In sampling with replacement, items are selected from the dataset, and each selection is put back before the next selection.
+   - To perform sampling with replacement, use `df.sample(size, replace=True)`.
+
+2. Sampling without Replacement:
+   - In sampling without replacement, items are selected from the dataset, but each selection is not put back.
+   - To perform sampling without replacement, use `df.sample(size)`.
+
+### Types of Events
+
+- Events can be categorized into two types:
+1. Independent Events:
+   - Independent events are events where the occurrence of one event does not affect the probability of the occurrence of other events.
+
+2. Dependent Events:
+   - Dependent events are events where the occurrence of one event affects the probability of the occurrence of other events.
+
+### Distributions
+
+- Distributions describe the probability of various outcomes.
+
+- Probability distribution curves represent the probability of occurrence, and the area under the curve represents the probability.
+
+### Visualizing Distributions
+
+- Visualizing distribution curves can help in understanding the probabilities.
+
+- To visualize a distribution, you can use `df.hist(bins=np.linspace())` and `plt.show()`.
+
+- Larger sample sizes tend to resemble the theoretical curve more closely.
+
+### Continuous Distribution Curves
+
+- There are different sets of continuous distribution curves, including:
+   - Uniform Distribution
+   - Binomial Distribution
+   - Normal Distribution
+
+#### Uniform Distribution
+- Uniform distribution assumes all outcomes are equally likely.
+
+- To work with the uniform distribution, use `from scipy.stats import uniform`.
+
+- Important methods for the uniform distribution are:
+   - `uniform.cdf(required value, lower limit, upper limit)`: Calculates the cumulative distribution function (CDF) up to the required value.
+   - `uniform.rvs(lower limit, upper limit, size)`: Generates a random set of variables between the specified limits, with the specified size.
+
+#### Binomial Distribution
+- The binomial distribution is used for binary outcomes (e.g., true or false).
+
+- To work with the binomial distribution, use `from scipy.stats import binom`.
+
+- Important methods for the binomial distribution are:
+   - `binom.rvs(no of attempts, probability of success, sample size)`: Generates a random set of variables based on the number of attempts, probability of success, and sample size.
+   - `binom.pmf(required value, no of attempts, probability of success)`: Calculates the probability mass function (PMF) for the required value.
+   - `binom.cdf(required value, no of attempts, probability of success)`: Calculates the cumulative distribution function (CDF) up to the required value.
+
+-The expected value (E) for the binomial distribution can be expressed mathematically as:
+
+   - E = number of attempts * success probability
+﻿## The Normal Distribution
+
+- The normal distribution, also known as the bell curve, is the most commonly used probability distribution.
+- It is symmetrical in shape, and the area under the curve is always equal to 1.
+
+### Shape of the Curve
+
+- The shape of the curve is determined by the mean and standard deviation of the data.
+- When the mean is 0 and the standard deviation is 1, the curve is known as the standard normal distribution curve.
+
+### Area Under the Curve to Standard Deviation Relationship
+
+- The following relationships hold for the area under the normal distribution curve:
+   - Approximately 68% of the area falls within 1 standard deviation.
+   - Approximately 95% of the area falls within 2 standard deviations.
+   - Approximately 99.7% of the area falls within 3 standard deviations.
+
+### Normal Distribution in Python
+
+- In Python, the `scipy.stats` library provides the `norm` module for working with the normal distribution.
+- Important methods available in the `norm` module:
+   - `norm.cdf(required value, mean, standard deviation)`: Calculates the cumulative probability up to the required value.
+   - `norm.ppf(percent of probability, mean, standard deviation)`: Calculates the value corresponding to the given percentile.
+   - `norm.rvs(mean, standard deviation, size)`: Generates random values from the normal distribution.
+
+## The Central Limit Theorem (CLT)
+
+- The Central Limit Theorem states that the distribution of means of multiple samples approaches a normal distribution.
+- As the number of samples increases, the sampling distribution curves become closer to the normal distribution curve.
+- The Central Limit Theorem is often used when analyzing means of different samples.
+
+## The Poisson Distribution
+
+- The Poisson distribution estimates the occurrence of a certain number of events in a fixed time period.
+- Key term: Lambda (λ), which represents the average number of events per time interval (mean).
+- In Python, the `scipy.stats` library provides the `poisson` module for working with the Poisson distribution.
+- Important methods available in the `poisson` module:
+   - `poisson.pmf(required value, λ value)`: Calculates the probability mass function for the required value.
+   - `poisson.cdf(required value, λ value)`: Calculates the cumulative distribution function up to the required value.
+   - `poisson.rvs(λ value, size)`: Generates random values from the Poisson distribution.
+
+### Other Probability Distributions
+
+1. Exponential Distribution
+   - The exponential distribution calculates the probability of time passing between Poisson events.
+   - The expected value of this distribution is taken in terms of the rate (λ) of Poisson events and time (exponential) as 1/λ.
+   - In Python, the `scipy.stats` library provides the `expon` module for working with the exponential distribution.
+   - Important methods available in the `expon` module:
+     - `expon.cdf(time, scale)`: Calculates the cumulative distribution function up to the given time, with the scale representing the maximum time for one event.
+
+2. t-Distribution
+   - The t-distribution is similar to the normal distribution but has parameters called degrees of freedom that define the thickness of the tails of the curve.
+   - A low degree of freedom indicates a high standard deviation, while a high degree of freedom results in a distribution closer to the normal distribution.
+
+3. Log-Normal Distribution
+   - The log-normal distribution represents a variable whose logarithm follows a normal distribution.
+   - This distribution curve may appear skewed to the left or right.
+﻿# Correlation: The relationship between two variables
+
+Correlation refers to the statistical measure of the relationship between two variables. It helps us understand how changes in one variable are associated with changes in another variable. The correlation between two variables can be quantified using a correlation coefficient.
+
+## Correlation Coefficient
+
+The correlation coefficient is a number that quantifies the strength and direction of the linear relationship between two variables. It ranges between -1 and 1, where:
+- A value of -1 indicates a perfect negative correlation (inverse relationship).
+- A value of 1 indicates a perfect positive correlation (direct relationship).
+- A value of 0 indicates no correlation (no linear relationship).
+
+The magnitude of the correlation coefficient determines the strength of the relationship, with values closer to -1 or 1 indicating a stronger relationship. The sign of the correlation coefficient (+ or -) indicates the direction of the relationship, indicating which variable is dependent on the other.
+
+## Visualizing Correlation
+
+To visualize the relationship between two variables and their correlation, we can use the Seaborn module in Python. Here are two common ways to visualize correlation:
+
+### 1. Scatter Plot
+```python
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.scatterplot(x, y, data=data)
+plt.show()
+```
+
+### 2. Trendline Plot
+```python
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.lmplot(x, y, data=data, ci=None)
+plt.show()
+```
+In the trendline plot, a line of best fit (trendline) is added to the scatter plot to show the general trend of the relationship.
+
+## Computing Correlation
+
+In Python, we can use the `df.corr()` method to calculate the correlation coefficient between variables in a DataFrame. Other methods to calculate correlation include:
+
+1. Pearson product-moment correlation: Measures the linear correlation between two variables.
+2. Kendall's tau: Measures the rank correlation between two variables.
+3. Spearman's rho: Measures the monotonic relationship between two variables.
+
+For more details on these correlation methods, refer to the notes on probability and statistics.
+
+## Caveats of Correlation
+
+While correlation can be a useful tool to understand the relationship between two variables, there are some important caveats to consider:
+
+- Correlation only measures linear relationships. If the relationship between variables is non-linear or highly skewed, the correlation may not accurately capture the underlying association.
+- It is crucial to avoid assuming causation based solely on correlation. Correlation does not imply causation. Spurious correlations can occur, where two variables are correlated due to the influence of a third variable (confounder).
+- Skewed data can be transformed to achieve a more linear correlation. Transformation methods like log transformation, square root transformation, or reciprocal transformation can be applied to the data to address skewness.
+
+## Confounding
+
+Confounding refers to a phenomenon where the relationship between two variables is influenced by a third variable. This can lead to spurious correlations. The confounding variable is related to both the dependent and independent variables and can distort the observed relationship between them.
+
+## Design of Experiments
+
+The design of experiments aims to answer the question, "What is the effect of the treatment on the response?" This involves studying the causal relationship between variables. Key terms in experimental design include:
+
+- Treatment: The independent or explanatory variable.
+- Response: The dependent variable.
+
+### Controlled Experiments
+
+Controlled experiments involve two groups:
+
+1. Treatment group: Receives the treatment being studied.
+2. Control group: Does not receive the treatment.
+
+To establish a causal relationship, the groups should be comparable in all aspects except for the treatment being studied.
+
+The gold standard for controlled experiments includes:
+
+1. Randomized Controlled Trial (RCT): Participants are randomly
+
+ assigned to the treatment or control group.
+2. Placebo: A control group is given a treatment that has no effect (placebo).
+3. Double-blind Trial: The person administering the treatment and the participants do not know if the treatment is the actual treatment or a placebo. This helps minimize bias and ensures more reliable conclusions about causation.
+
+### Observational Studies
+
+Observational studies differ from controlled experiments in that participants are not randomly assigned to groups. Therefore, they establish association but not causation between variables.
+
+## Longitudinal vs Cross-Sectional Studies
+
+In the context of studies, we have two types:
+
+1. Longitudinal Study:
+   - Participants are followed over a period of time.
+   - Helps observe the effect of age or time on variables.
+   - Allows for studying changes within individuals.
+   - Can avoid confounding by generation or cohort effects.
+   - More expensive and time-consuming compared to cross-sectional studies.
+
+2. Cross-Sectional Study:
+   - Data is collected from participants at a single point in time (snapshot).
+   - Provides information about the relationship between variables at that particular time.
+   - Confounding by generation or cohort effects can occur.
+   - Generally more affordable, faster, and convenient than longitudinal studies.
