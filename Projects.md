@@ -1,2 +1,5 @@
-[Investigating Netflix Movies (Data Science)](https://github.com/Ashuradhipathi/Investigating-Netflix-Movies-and-Guest-Stars-in-The-Office)
-[What and Where are the Worlds Oldest Businesses(Data Science)](https://github.com/Ashuradhipathi/What-and-Where-are-the-World-s-Oldest-Businesses)
+## Projects on Datascience
+
+1. [Investigating Netflix Movies (Data Science)](https://github.com/Ashuradhipathi/Investigating-Netflix-Movies-and-Guest-Stars-in-The-Office)
+
+2. [What and Where are the Worlds Oldest Businesses(Data Science)](https://github.com/Ashuradhipathi/What-and-Where-are-the-World-s-Oldest-Businesses)
